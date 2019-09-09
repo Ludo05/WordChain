@@ -1,87 +1,48 @@
-const GetData = require('../main/GetData');
-
 class CheckWordsList {
 
-    static checkClosetWords(firstWord, arrayOfWords) {
+    //Gets all the words with a difference of one
+    static checkClosetWords(head, arrayOfWords) {
         const wordsAccept = [];
-        arrayOfWords.map(word => {
-            if (this.checkCharsDifference(firstWord, word) === 1) {
+        let count = 0;
+        arrayOfWords.forEach( word => {
+            for (let i = 0; i < word.length; i++) {
+                if(head[i] === word[i]){
+                    count++
+                }
+            }
+            if(head.length - count === 1) {
                 wordsAccept.push(word)
             }
+            count = 0;
         });
         return wordsAccept;
     }
 
-   static checkCharsDifference(firstWord, wordInArray) {
-        let diff = 0;
-        firstWord = firstWord.split('').sort();
-        wordInArray = wordInArray.split('').sort();
-        wordInArray.filter((char) => {
-            if (!firstWord.includes(char)) {
-                diff++
-            }
-        });
-        return diff
-    }
 
-   static returnClosetWord(last,dictionary) {
-        let arm = []
-        let similarity = 0;
-        const lass = last.split('');
-        dictionary.map( (word,index) => {
-            for(let i = 0; i < lass.length; i++){
-                if (word.includes(lass[i])) {
-                    similarity++
+    //Returns words which are characters in the same place as the last word.
+    static returnsWord (lastWord,arr,startWord) {
+        const newArr = [];
+        arr.map( word => {
+            for (let i = 0; i < word.length; i++) {
+                if(word[i] === lastWord[i]){
+                    if(startWord[i] !== word[i])
+                        newArr.push(word)
                 }
             }
-            arm.push({similarity,index});
-            similarity = 0
-        });
-        const maxSimilarity = arm.reduce((prev, current) => (prev.similarity > current.similarity) ? prev : current);
-console.log(dictionary[maxSimilarity.index])
-        // return  arm[maxSimilarity]
 
+        });
+        return newArr;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // }returnClosetWord(word,dictionary){
-    //     const lastWord = 'dog'.split();
-    //     console.log(lastWord)
-    //     dictionary.map( w => {
-    //        //Check which words has similar words as the last word.
-    //         //I want to see if the array has a similar word and is one step closer to getting to dog.
-    //        if(w.contains(lastWord)) {
-    //
-    //
-    //         return w
-    //
-    //        }
-    //     });
-    //
-    // }
+    //Need a function which will check ahead to see if the word has a follow up.
+    static getOneWord (arr) {
+        if(arr.length === 1){
+            return arr[0]
+        } else {
+            return arr[arr.length - 1]
+            }
+        }
 }
-
-
 module.exports = CheckWordsList;
 
 
@@ -109,4 +70,20 @@ module.exports = CheckWordsList;
 //          return word;
 //          //If nothing is available return a message.
 //      }
+// }
+
+// }returnClosetWord(word,dictionary){
+//     const lastWord = 'dog'.split();
+//     console.log(lastWord)
+//     dictionary.map( w => {
+//        //Check which words has similar words as the last word.
+//         //I want to see if the array has a similar word and is one step closer to getting to dog.
+//        if(w.contains(lastWord)) {
+//
+//
+//         return w
+//
+//        }
+//     });
+//
 // }

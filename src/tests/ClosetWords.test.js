@@ -1,12 +1,16 @@
-const CheckWords = require('../main/CheckWords');
-const getWord = require('../main/testWork')
+const CheckWordsList = require('../main/CheckWords');
+
 describe('Should Test Words', function () {
+
+    beforeEach(() => {
+
+    })
+
     test('Should return all words close to word input', () => {
-        const CheckWord = new CheckWords;
-        expect(CheckWord.checkClosetWords('word',['ward','wprk','djfn','work','mord','tord','lord'])).toStrictEqual([ "ward", "work", "mord", "tord", "lord"])
+        expect(CheckWordsList.checkClosetWords('word',['dard','wphk','djfn','wfgrk','mgfd','cord','work'])).toEqual(['cord','work'])
     });
     test('Should return closet word to output', () => {
         // const CheckWord = new CheckWords;
-        expect(getWord.test('cat',['cot','mat','lat','dam'])).toStrictEqual('cot')
+        expect(CheckWordsList.returnsWord('dog',['cot','mat','lat'],'cat')).toStrictEqual(['cot'])
     })
 });
