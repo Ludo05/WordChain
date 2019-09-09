@@ -27,12 +27,12 @@ class WordChain{
             while (this._firstWord !== this._lastWord) {
                const dictionary = await GetData.getDataFromFile('./50kwords.txt');
                const wordsOfLength = await GetData.returnWordsOfLength(this.getFirstWord(), dictionary);
-               const closeWords = await CheckWords.checkClosetWords(this.getFirstWord(), wordsOfLength)
-               const shortenedList = await CheckWords.returnsWord(this.getLastWord(), closeWords, this.getFirstWord())
-               const close = await CheckWords.getOneWord(shortenedList);
+               const closeWords = await CheckWords.checkClosetWords(this.getFirstWord(), wordsOfLength);
+               const shortenedList = await CheckWords.returnsWord(this.getLastWord(), closeWords, this.getFirstWord());
+               const wordChosen = await CheckWords.getOneWord(shortenedList);
 
-               chain.push(close);
-               this.setFirstWord(close)
+               chain.push(wordChosen);
+               this.setFirstWord(wordChosen)
             }
             console.log(chain)
     }

@@ -45,33 +45,6 @@ class CheckWordsList {
 }
 module.exports = CheckWordsList;
 
-
-
-
-
-
-
-
-
-
-
-    //      addToChain(endChainWord,arr){
-//         //Want to check if any of the words in array contain letters from the final word.
-//         arr.map( (word) => {
-//         if(this.checkCharsDifference(endChainWord,word)){
-//
-//         }
-//         });
-//          //If they do must also check that its not already in the array.
-//
-//          //Must also check if they word is one letter array from the previous word.
-//
-//          //Add word to the array.
-//          return word;
-//          //If nothing is available return a message.
-//      }
-// }
-
 // }returnClosetWord(word,dictionary){
 //     const lastWord = 'dog'.split();
 //     console.log(lastWord)

@@ -15,8 +15,8 @@ class GetData {
 
     // Gets all words the same length as first word
     static returnWordsOfLength(firstWord,dictionary)  {
-       const newWords = [];
        return new Promise( resolve => {
+           const newWords = [];
            dictionary.map( word => {
                if(firstWord.length === word.length){
                    newWords.push(word)
