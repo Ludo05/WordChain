@@ -20,8 +20,25 @@ class WordChain{
         return this._lastWord;
     }
 
+    validateInputs(firstWord, secondWord) {
+        if (
+            firstWord.length < 3 ||
+            firstWord.length > 7 ||
+            secondWord.length < 3 ||
+            secondWord.length > 7
+        ) {
+            if (firstWord.length !== secondWord.length) {
+                console.log("Need to be the same length");
+                return;
+            }
+            console.log("Not valid input lengths");
+            return;
+        }
+    }
 
  async run()  {
+            const {_firstWord, _lastWord} = this;
+            this.validateInputs(_firstWord,_lastWord);
             const chain = [];
             chain.push(this.getFirstWord());
             while (this._firstWord !== this._lastWord) {
@@ -38,5 +55,5 @@ class WordChain{
     }
 }
 
-const wordChain = new WordChain('ruby','code')
+const wordChain = new WordChain('cat','dog')
 // wordChain.run();

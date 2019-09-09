@@ -40,23 +40,13 @@ class CheckWordsList {
             return arr[0]
         } else {
             return arr[arr.length - 1]
+            //Use first word and check if it has another chained word possible.
+
+            //If it does use that word and repeat if it doesn't ++ array and try again
+
+            //TODO could use recursion.
             }
         }
 }
 module.exports = CheckWordsList;
 
-// }returnClosetWord(word,dictionary){
-//     const lastWord = 'dog'.split();
-//     console.log(lastWord)
-//     dictionary.map( w => {
-//        //Check which words has similar words as the last word.
-//         //I want to see if the array has a similar word and is one step closer to getting to dog.
-//        if(w.contains(lastWord)) {
-//
-//
-//         return w
-//
-//        }
-//     });
-//
-// }

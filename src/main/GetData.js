@@ -1,14 +1,13 @@
 const fs = require('fs');
+const CheckWords = require('../main/CheckWords')
 
 class GetData {
     //Returns the words from the file and pushes them into a array
    static getDataFromFile(file) {
        return new Promise((resolve) => {
-           const wordList = [];
             const data = fs.readFileSync(file, 'utf-8');
-                    data.split('\n').filter(i => i !== '')
-                        .forEach( em => wordList.push(em));
-                    resolve(wordList)
+            const dataToArray = data.split('\n').filter(i => i !== '');
+           resolve(dataToArray);
                 })
             }
 
@@ -16,16 +15,15 @@ class GetData {
     // Gets all words the same length as first word
     static returnWordsOfLength(firstWord,dictionary)  {
        return new Promise( resolve => {
-           const newWords = [];
-           dictionary.map( word => {
-               if(firstWord.length === word.length){
-                   newWords.push(word)
-               }
-           });
-           resolve(newWords)
+           const wordsOfLength = dictionary.filter( word => firstWord.length === word.length)
+           resolve(wordsOfLength)
        })
    }
 }
-
+// GetData.getDataFromFile('./50kwords.txt')
+//     .then( data => GetData.returnWordsOfLength('cat',data))
+//     .then( words => CheckWords.checkClosetWords('cat',words))
+//     .then(shortenedList => CheckWords.checkClosetWords('cat',shortenedList))
+//     .then( wordsss => console.log(wordsss))
 module.exports = GetData;
 
