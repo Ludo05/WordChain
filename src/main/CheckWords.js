@@ -24,9 +24,13 @@ class CheckWordsList {
         const newArr = [];
         arr.map( word => {
             for (let i = 0; i < word.length; i++) {
+                //If current word in array has the char in the same place as the last word.
                 if(word[i] === lastWord[i]){
-                    if(startWord[i] !== word[i])
+                    //If the startWord (head of the chain) char is not equal to current word char
+                    // (So it doesn't return words that has already looked at.)
+                    if(startWord[i] !== word[i]) {
                         newArr.push(word)
+                    }
                 }
             }
         });
