@@ -28,6 +28,7 @@ class CheckWordsList {
                 if(word[i] === lastWord[i]){
                     //If the startWord (head of the chain) char is not equal to current word char
                     // (So it doesn't return words that has already looked at.)
+                    //So it wont accidently return the head word
                     if(startWord[i] !== word[i]) {
                         newArr.push(word)
                     }
