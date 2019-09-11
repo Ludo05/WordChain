@@ -1,5 +1,5 @@
+const GetData = require('../main/GetData');
 class CheckWordsList {
-
     //Gets all the words with a difference of one
     static checkClosetWords(head, arrayOfWords) {
         const wordsAccept = [];
@@ -29,22 +29,29 @@ class CheckWordsList {
                         newArr.push(word)
                 }
             }
-
         });
         return newArr;
     }
 
     //Need a function which will check ahead to see if the word has a follow up.
-    static getOneWord (arr) {
+   async getOneWord (arr,lastWord) {
         if(arr.length === 1){
             return arr[0]
         } else {
-            return arr[arr.length - 1]
-            //Use first word and check if it has another chained word possible.
-
-            //If it does use that word and repeat if it doesn't ++ array and try again
-
-            //TODO could use recursion.
+            //Loop through the array.
+            for (let i = 0; i < arr.length; i++) {
+            //Take the first word.
+              let word =  arr[i];
+                //Check if this word returns an array of words or a word.
+              const data = await GetData.getDataFromFile('./50kwords.txt');
+              const wordsOfLength = await GetData.returnWordsOfLength(word,data);
+              const shortenedList = await CheckWordsList.checkClosetWords(word ,wordsOfLength);
+              const returnsWords = await CheckWordsList.returnsWord(lastWord,shortenedList,word);
+                //If it does return that word to the chain else move on to next word in the chain.
+                if(returnsWords.length > 0){
+               return arr[i]
+              }
+            }
             }
         }
 }
