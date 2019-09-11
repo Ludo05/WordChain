@@ -20,13 +20,13 @@ class WordChain{
     }
 
     static validateInputs(firstWord, secondWord) {
-        if (firstWord.length < 3 || firstWord.length > 7 || secondWord.length < 3 || secondWord.length > 7) {
             if (firstWord.length !== secondWord.length) {
-                console.log("Need to be the same length");
-                return;
+                return "Need to be the same length";
             }
-            console.log("Not valid input lengths");
-                return;
+            if(firstWord.length === secondWord.length){
+                if (firstWord.length < 3 || firstWord.length > 7 || secondWord.length < 3 || secondWord.length > 7) {
+                return "Not valid input lengths";
+                }
         }
     }
 
@@ -45,10 +45,11 @@ class WordChain{
                chain.push(wordChosen);
                this.setFirstWord(wordChosen)
             }
+            // return  chain;
             console.log(chain)
     }
 }
 module.exports = WordChain;
 
-const wordChain = new WordChain('cat','mat');
+const wordChain = new WordChain('ruby','code');
 wordChain.run();
