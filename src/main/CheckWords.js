@@ -6,11 +6,13 @@ class CheckWordsList {
         arrayOfWords.forEach( word => {
           if(this.getDifferenceBetweenTwoWords(head,word) === true){
               wordsAccept.push(word)
-          };
+          }
         });
         return wordsAccept;
     }
 
+
+    //Checks the difference between two words.
    static getDifferenceBetweenTwoWords(head,word) {
         let count = 0;
         for (let i = 0; i < word.length; i++) {
@@ -18,9 +20,8 @@ class CheckWordsList {
                 count++
             }
         }
-        if(head.length - count === 1) {
-            return true;
-        }
+        if(head.length - count === 1) return true;
+
     }
 
     //Returns words which are characters in the same place as the last word.
