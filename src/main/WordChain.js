@@ -54,6 +54,6 @@ class WordChain{
     }
 }
 module.exports = WordChain;
-
-const wordChain = new WordChain('ruby','code');
+//ait ego
+const wordChain = new WordChain('anglers','antlers');
 wordChain.run();
