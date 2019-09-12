@@ -1,6 +1,6 @@
 const GetData = require('../main/GetData');
 class CheckWordsList {
-    //Gets all the words with a difference of one
+    //Gets all the words with a difference of one from array.
     static checkClosetWords(head, arrayOfWords) {
         const wordsAccept = [];
         let count = 0;
@@ -37,6 +37,14 @@ class CheckWordsList {
         });
         return newArr;
     }
+    async checkIfWordHasFurtherMatchingWords(word, lastWord) {
+//Check if this word returns an array of words or a word.
+        const data = await GetData.getDataFromFile('./50kwords.txt');
+        const wordsOfLength = await GetData.returnWordsOfLength(word, data);
+        const shortenedList = await CheckWordsList.checkClosetWords(word, wordsOfLength);
+        const returnsWords = await CheckWordsList.returnsWord(lastWord, shortenedList, word);
+        return returnsWords;
+    }
 
     //Need a function which will check ahead to see if the word has a follow up.
    async getOneWord (arr,lastWord) {
@@ -47,11 +55,7 @@ class CheckWordsList {
             for (let i = 0; i < arr.length; i++) {
             //Take the first word.
               let word =  arr[i];
-                //Check if this word returns an array of words or a word.
-              const data = await GetData.getDataFromFile('./50kwords.txt');
-              const wordsOfLength = await GetData.returnWordsOfLength(word,data);
-              const shortenedList = await CheckWordsList.checkClosetWords(word ,wordsOfLength);
-              const returnsWords = await CheckWordsList.returnsWord(lastWord,shortenedList,word);
+                const returnsWords = await this.checkIfWordHasFurtherMatchingWords(word, lastWord);
                 //If it does return that word to the chain else move on to next word in the chain.
                 if(returnsWords.length > 0){
                return arr[i]

@@ -51,5 +51,5 @@ class WordChain{
 }
 module.exports = WordChain;
 
-const wordChain = new WordChain('ruby','code');
+const wordChain = new WordChain('lead','gold');
 wordChain.run();
