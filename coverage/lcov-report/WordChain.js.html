@@ -197,7 +197,7 @@ class WordChain{
             while (this._firstWord !== this._lastWord) {
                const dictionary = await GetData.getDataFromFile('./50kwords.txt');
                const wordsOfLength = <span class="cstat-no" title="statement not covered" >await GetData.returnWordsOfLength(this.getFirstWord(), dictionary);</span>
-               const closeWords = <span class="cstat-no" title="statement not covered" >await CheckWords.checkClosetWords(this.getFirstWord(), wordsOfLength);</span>
+               const closeWords = <span class="cstat-no" title="statement not covered" >await CheckWords.checkClosestWords(this.getFirstWord(), wordsOfLength);</span>
                const shortenedList = <span class="cstat-no" title="statement not covered" >await CheckWords.returnsWord(this.getLastWord(), closeWords, this.getFirstWord());</span>
                const wordChosen = <span class="cstat-no" title="statement not covered" >await checkWords.getOneWord(shortenedList,this._lastWord);</span>
 <span class="cstat-no" title="statement not covered" >               chain.push(wordChosen);</span>

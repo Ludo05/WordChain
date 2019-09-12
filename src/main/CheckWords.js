@@ -1,23 +1,27 @@
 const GetData = require('../main/GetData');
 class CheckWordsList {
     //Gets all the words with a difference of one from array.
-    static checkClosetWords(head, arrayOfWords) {
+    static checkClosestWords(head, arrayOfWords) {
         const wordsAccept = [];
-        let count = 0;
         arrayOfWords.forEach( word => {
-            for (let i = 0; i < word.length; i++) {
-                if(head[i] === word[i]){
-                    count++
-                }
-            }
-            if(head.length - count === 1) {
-                wordsAccept.push(word)
-            }
-            count = 0;
+          if(this.getDifferenceBetweenTwoWords(head,word) === true){
+              wordsAccept.push(word)
+          };
         });
         return wordsAccept;
     }
 
+   static getDifferenceBetweenTwoWords(head,word) {
+        let count = 0;
+        for (let i = 0; i < word.length; i++) {
+            if(head[i] === word[i]){
+                count++
+            }
+        }
+        if(head.length - count === 1) {
+            return true;
+        }
+    }
 
     //Returns words which are characters in the same place as the last word.
     static returnsWord (lastWord,arr,startWord) {
@@ -41,7 +45,7 @@ class CheckWordsList {
 //Check if this word returns an array of words or a word.
         const data = await GetData.getDataFromFile('./50kwords.txt');
         const wordsOfLength = await GetData.returnWordsOfLength(word, data);
-        const shortenedList = await CheckWordsList.checkClosetWords(word, wordsOfLength);
+        const shortenedList = await CheckWordsList.checkClosestWords(word, wordsOfLength);
         const returnsWords = await CheckWordsList.returnsWord(lastWord, shortenedList, word);
         return returnsWords;
     }
@@ -63,6 +67,7 @@ class CheckWordsList {
             }
             }
         }
+
 }
 module.exports = CheckWordsList;
 

@@ -167,7 +167,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const GetData = require('../main/GetData');
 class CheckWordsList {
     //Gets all the words with a difference of one
-    static checkClosetWords(head, arrayOfWords) {
+    static checkClosestWords(head, arrayOfWords) {
         const wordsAccept = [];
         let count = 0;
         arrayOfWords.forEach( word =&gt; {
@@ -211,7 +211,7 @@ class CheckWordsList {
                 //Check if this word returns an array of words or a word.
               const data = <span class="cstat-no" title="statement not covered" >await GetData.getDataFromFile('./50kwords.txt');</span>
               const wordsOfLength = <span class="cstat-no" title="statement not covered" >await GetData.returnWordsOfLength(word,data);</span>
-              const shortenedList = <span class="cstat-no" title="statement not covered" >await CheckWordsList.checkClosetWords(word ,wordsOfLength);</span>
+              const shortenedList = <span class="cstat-no" title="statement not covered" >await CheckWordsList.checkClosestWords(word ,wordsOfLength);</span>
               const returnsWords = <span class="cstat-no" title="statement not covered" >await CheckWordsList.returnsWord(lastWord,shortenedList,word);</span>
                 //If it does return that word to the chain else move on to next word in the chain.
 <span class="cstat-no" title="statement not covered" >                if(returnsWords.length &gt; 0){</span>

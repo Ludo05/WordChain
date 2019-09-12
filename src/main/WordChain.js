@@ -30,20 +30,24 @@ class WordChain{
         }
     }
 
+    async runChain (chain) {
+        const checkWords = new CheckWords();
+        const dictionary = await GetData.getDataFromFile('./50kwords.txt');
+        const wordsOfLength = await GetData.returnWordsOfLength(this.getFirstWord(), dictionary);
+        const closeWords = await CheckWords.checkClosestWords(this.getFirstWord(), wordsOfLength);
+        const shortenedList = await CheckWords.returnsWord(this.getLastWord(), closeWords, this.getFirstWord());
+        const wordChosen = await checkWords.getOneWord(shortenedList,this._lastWord);
+        chain.push(wordChosen);
+        this.setFirstWord(wordChosen)
+    }
+
  async run()  {
-            const checkWords = new CheckWords();
             const {_firstWord, _lastWord} = this;
             WordChain.validateInputs(_firstWord,_lastWord);
             const chain = [];
             chain.push(this.getFirstWord());
             while (this._firstWord !== this._lastWord) {
-               const dictionary = await GetData.getDataFromFile('./50kwords.txt');
-               const wordsOfLength = await GetData.returnWordsOfLength(this.getFirstWord(), dictionary);
-               const closeWords = await CheckWords.checkClosetWords(this.getFirstWord(), wordsOfLength);
-               const shortenedList = await CheckWords.returnsWord(this.getLastWord(), closeWords, this.getFirstWord());
-               const wordChosen = await checkWords.getOneWord(shortenedList,this._lastWord);
-               chain.push(wordChosen);
-               this.setFirstWord(wordChosen)
+            const run = await this.runChain(chain)
             }
             // return  chain;
             console.log(chain)
@@ -51,5 +55,5 @@ class WordChain{
 }
 module.exports = WordChain;
 
-const wordChain = new WordChain('lead','gold');
+const wordChain = new WordChain('ruby','code');
 wordChain.run();
